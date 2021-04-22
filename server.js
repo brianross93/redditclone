@@ -13,7 +13,7 @@ require('./data/reddit-db');
 // app.use(express.static('public'));
 
 //middleware 
-require('./controllers/posts.js')(app);
+
 const exphbs = require('express-handlebars');
 // Use Body Parser
 app.use(bodyParser.json());
@@ -23,6 +23,8 @@ app.use(expressValidator());
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars');
 
+//controllers
+require('./controllers/posts.js')(app);
 // const router = require('./routes/index.js')
 // app.use(router)
 
@@ -30,12 +32,15 @@ app.set('view engine', 'handlebars');
 app.get('/', (req, res) => {
 
     res.render('home')
+
   })
 
 app.get('/posts/new', (req, res) => {
 
     res.render('posts-new')
   })
+
+ 
 
 
 //   app.get('/', (req, res) => {

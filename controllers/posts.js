@@ -10,8 +10,18 @@ module.exports = (app) => {
     // SAVE INSTANCE OF POST MODEL TO DB
     post.save((err, post) => {
       // REDIRECT TO THE ROOT
-      return res.redirect(`/`);
+      return res.redirect('/');
     })
   });
+
+  app.get('/', (req, res) => {
+    Post.find({}).lean()
+      .then(posts => {
+        res.render('posts-index', { posts });
+      })
+      .catch(err => {
+        console.log(err.message);
+      })
+  })
 
 };

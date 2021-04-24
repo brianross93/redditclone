@@ -6,8 +6,7 @@ const port = 3000
 const app = express();
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
-// Set db
-require('./data/reddit-db');
+
 
 // //styles 
 // app.use(express.static('public'));
@@ -23,17 +22,16 @@ app.use(expressValidator());
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars');
 
-//controllers
-require('./controllers/posts.js')(app);
+
 // const router = require('./routes/index.js')
 // app.use(router)
 
 
-app.get('/', (req, res) => {
+// app.get('/', (req, res) => {
 
-    res.render('home')
+//     res.render('home')
 
-  })
+//   })
 
 app.get('/posts/new', (req, res) => {
 
@@ -42,16 +40,18 @@ app.get('/posts/new', (req, res) => {
 
  
 
+//controllers
+require('./controllers/posts.js')(app);
 
-//   app.get('/', (req, res) => {
-//     // set the url of the gif
-//     const gifUrl = 'https://media1.tenor.com/images/561c988433b8d71d378c9ccb4b719b6c/tenor.gif?itemid=10058245'
-//     // render the hello-gif view, passing the gifUrl into the view to be displayed
-//     res.render('hello-gif', { gifUrl })
-//   })
+// Set db
+require('./data/reddit-db');
+
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   })
 
   module.exports = app;
+

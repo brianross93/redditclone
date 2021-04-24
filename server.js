@@ -42,6 +42,7 @@ app.get('/posts/new', (req, res) => {
 
 //controllers
 require('./controllers/posts.js')(app);
+require('./controllers/comments.js')(app);
 
 // Set db
 require('./data/reddit-db');
